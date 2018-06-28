@@ -15,6 +15,7 @@
 // control definitions
 @property (weak, nonatomic) IBOutlet UICollectionView *collectionView;
 @property (weak, nonatomic) IBOutlet UISearchBar *searchBar;
+@property (weak, nonatomic) IBOutlet UIActivityIndicatorView *activityIndicator;
 
 // class properties
 @property (strong, nonatomic) NSArray* movies;
@@ -30,7 +31,13 @@
     self.collectionView.dataSource = self;
     self.collectionView.delegate = self;
     self.searchBar.delegate = self;
+    [self.activityIndicator startAnimating];
     [self fetchMovies];
+    
+    // refesh control
+    self.refreshControl = [[UIRefreshControl alloc] init];
+    [self.refreshControl addTarget:self action:@selector(fetchMovies) forControlEvents:UIControlEventValueChanged];
+    [self.collectionView insertSubview:self.refreshControl atIndex:0];
     
     // set up Collectionview layout
     UICollectionViewFlowLayout* layout = (UICollectionViewFlowLayout*)self.collectionView.collectionViewLayout;
@@ -42,6 +49,8 @@
     CGFloat itemWidth = (self.collectionView.frame.size.width - layout.minimumInteritemSpacing * (postersPerLine - 1)) / postersPerLine;
     CGFloat itemHeight = itemWidth * 1.5;
     layout.itemSize = CGSizeMake(itemWidth, itemHeight);
+    
+    [self.refreshControl endRefreshing];
 }
 
 - (void)fetchMovies {
@@ -55,14 +64,17 @@
             UIAlertController* alert = [UIAlertController alertControllerWithTitle:@"Network Error" message:@"Could not load movies." preferredStyle:UIAlertControllerStyleAlert];
             
             // create OK button
-            UIAlertAction* ok = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+            UIAlertAction* ok = [UIAlertAction actionWithTitle:@"Try again" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+                [self.activityIndicator startAnimating];
+                [self fetchMovies];
             }];
             [alert addAction: ok];
             
             // show the alert window
             [self presentViewController:alert animated:YES completion:^{
             }];
-            
+            self.movies = nil;
+            self.filteredMovies = nil;
             NSLog(@"%@", [error localizedDescription]);
         }
         else
@@ -71,10 +83,11 @@
             
             self.movies = dataDictionary[@"results"];
             self.filteredMovies = self.movies;
-            [self.collectionView reloadData];
         }
         
+        [self.collectionView reloadData];
         [self.refreshControl endRefreshing];
+        [self.activityIndicator stopAnimating];
     }];
     [task resume];
 }
@@ -150,5 +163,9 @@
     self.filteredMovies = self.movies;
     [self.collectionView reloadData];
     [self.searchBar resignFirstResponder];
+}
+
+- (IBAction)onTap:(id)sender {
+    [self.refreshControl endRefreshing];
 }
 @end

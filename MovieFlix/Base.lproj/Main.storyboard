@@ -210,6 +210,15 @@
                                     <size key="footerReferenceSize" width="0.0" height="0.0"/>
                                     <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 </collectionViewFlowLayout>
+                                <activityIndicatorView key="backgroundView" hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" hidesWhenStopped="YES" style="whiteLarge" id="Ygq-yv-Wgr">
+                                    <rect key="frame" x="0.0" y="0.0" width="375" height="547"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <gestureRecognizers/>
+                                    <color key="color" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    <connections>
+                                        <outletCollection property="gestureRecognizers" destination="VqQ-7k-znG" appends="YES" id="Wdf-mi-MOw"/>
+                                    </connections>
+                                </activityIndicatorView>
                                 <cells>
                                     <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="MovieItem" id="GUr-r9-Eqa" customClass="MovieItem">
                                         <rect key="frame" x="0.0" y="0.0" width="132" height="197"/>
@@ -242,11 +251,17 @@
                     </view>
                     <navigationItem key="navigationItem" id="4fG-mS-Xb8"/>
                     <connections>
+                        <outlet property="activityIndicator" destination="Ygq-yv-Wgr" id="fOm-Cw-PLs"/>
                         <outlet property="collectionView" destination="T37-wK-JUc" id="USx-mL-XYI"/>
                         <outlet property="searchBar" destination="pLb-xU-L2p" id="h0q-VP-Dpx"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="98y-To-AYS" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="VqQ-7k-znG">
+                    <connections>
+                        <action selector="onTap:" destination="og1-D1-2gY" id="qpn-nr-t1g"/>
+                    </connections>
+                </tapGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="1352.8" y="35.532233883058474"/>
         </scene>

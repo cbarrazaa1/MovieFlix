@@ -71,6 +71,7 @@
             [alert addAction: ok];
             
             // show the alert window
+            [self endRefreshControl];
             [self presentViewController:alert animated:YES completion:^{
             }];
             self.movies = nil;
@@ -86,8 +87,8 @@
         }
         
         [self.collectionView reloadData];
-        [self.refreshControl endRefreshing];
         [self.activityIndicator stopAnimating];
+        [self.refreshControl endRefreshing];
     }];
     [task resume];
 }
@@ -167,5 +168,10 @@
 
 - (IBAction)onTap:(id)sender {
     [self.refreshControl endRefreshing];
+}
+
+- (void)endRefreshControl {
+    [self.refreshControl endRefreshing];
+    [self.collectionView setContentOffset:CGPointMake(0, -self.refreshControl.bounds.size.height) animated:YES];
 }
 @end

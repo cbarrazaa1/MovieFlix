@@ -15,6 +15,7 @@
 @property (weak, nonatomic) IBOutlet UILabel *titleLabel;
 @property (weak, nonatomic) IBOutlet UILabel *dateLabel;
 @property (weak, nonatomic) IBOutlet UILabel *descLabel;
+@property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
 
 @end
 
@@ -47,6 +48,9 @@
     [self.titleLabel sizeToFit];
     [self.descLabel sizeToFit];
     [self.dateLabel sizeToFit];
+    
+    CGFloat maxHeight = self.descLabel.frame.origin.y + self.descLabel.frame.size.height + 30.0;
+    self.scrollView.contentSize = CGSizeMake(self.descLabel.frame.size.width, maxHeight);
 }
 
 - (void)didReceiveMemoryWarning {

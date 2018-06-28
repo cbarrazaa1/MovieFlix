@@ -149,6 +149,7 @@
                         <outlet property="dateLabel" destination="kQD-kf-prF" id="Jm3-ql-RQy"/>
                         <outlet property="descLabel" destination="KlB-U4-Mpk" id="Ty6-UM-Bv9"/>
                         <outlet property="posterView" destination="ehP-KT-fRZ" id="nHZ-wU-HkT"/>
+                        <outlet property="scrollView" destination="xfb-2C-sfb" id="h0m-Pk-0Hl"/>
                         <outlet property="titleLabel" destination="1m7-KF-dFx" id="y96-jI-6J9"/>
                     </connections>
                 </viewController>

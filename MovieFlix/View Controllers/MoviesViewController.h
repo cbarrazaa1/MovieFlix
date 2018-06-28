@@ -1,5 +1,5 @@
 //
-//  ViewController.h
+//  MoviesViewController.h
 //  MovieFlix
 //
 //  Created by César Francisco Barraza on 6/27/18.
@@ -8,8 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface ViewController : UIViewController
-
+@interface MoviesViewController : UIViewController
 
 @end
-

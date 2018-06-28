@@ -42,6 +42,18 @@
     NSURLSessionDataTask *task = [session dataTaskWithRequest:request completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
             if (error != nil)
             {
+                // create alert window
+                UIAlertController* alert = [UIAlertController alertControllerWithTitle:@"Network Error" message:@"Could not load movies." preferredStyle:UIAlertControllerStyleAlert];
+                
+                // create OK button
+                UIAlertAction* ok = [UIAlertAction actionWithTitle:@"OK" style:UIAlertActionStyleDefault handler:^(UIAlertAction * _Nonnull action) {
+                }];
+                [alert addAction: ok];
+                
+                // show the alert window
+                [self presentViewController:alert animated:YES completion:^{
+                }];
+                
                 NSLog(@"%@", [error localizedDescription]);
             }
             else
@@ -51,7 +63,7 @@
                 self.movies = dataDictionary[@"results"];
                 [self.tableView reloadData];
             }
-        
+
             [self.refreshControl endRefreshing];
             [self.loadingActivity stopAnimating];
     }];

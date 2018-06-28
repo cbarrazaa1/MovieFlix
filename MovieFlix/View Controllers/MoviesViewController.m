@@ -69,7 +69,6 @@
             [self.loadingActivity stopAnimating];
     }];
     [task resume];
-    
 }
 
 - (void)didReceiveMemoryWarning {

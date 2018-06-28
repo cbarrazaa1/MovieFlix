@@ -55,7 +55,6 @@
                                             <outlet property="descLabel" destination="9qD-ub-z7H" id="KS6-Tk-4S0"/>
                                             <outlet property="movieImage" destination="Xis-ep-gzq" id="wcc-ws-Y8P"/>
                                             <outlet property="titleLabel" destination="sgz-Fb-H69" id="hjh-95-SRi"/>
-                                            <segue destination="rSX-cK-RNs" kind="show" id="v16-dB-4jP"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -155,7 +154,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="2Ey-m5-JYV" userLabel="First Responder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="-116" y="754"/>
+            <point key="canvasLocation" x="1353" y="733"/>
         </scene>
         <!--Now Playing-->
         <scene sceneID="9y0-a6-GD1">
@@ -227,6 +226,7 @@
                                         </view>
                                         <connections>
                                             <outlet property="movieImage" destination="6K3-Qf-t7z" id="xqz-QZ-cCD"/>
+                                            <segue destination="rSX-cK-RNs" kind="show" id="TMe-iS-mpN"/>
                                         </connections>
                                     </collectionViewCell>
                                 </cells>

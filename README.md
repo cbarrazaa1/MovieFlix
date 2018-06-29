@@ -2,7 +2,7 @@
 
 **Movie Flix** is a movies app using the [The Movie Database API](http://docs.themoviedb.apiary.io/#).
 
-Time spent: **10** hours spent in total
+Time spent: **11** hours spent in total
 
 ## User Stories
 
@@ -28,6 +28,7 @@ The following **optional** features are implemented:
 The following **additional** features are implemented:
 
 - [X] Placeholder image while requesting from network.
+- [X] In the detail view of each movie, the trailer can be watched by tapping on the movie's picture.
 
 Please list two areas of the assignment you'd like to **discuss further with your peers** during the next class (examples include better ways to implement something, how to extend your app in certain ways, etc):
 

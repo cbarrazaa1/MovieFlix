@@ -108,11 +108,10 @@
     // Pass the selected object to the new view controller.
     UICollectionViewCell* cell = sender;
     NSIndexPath* index = [self.collectionView indexPathForCell:cell];
-    NSDictionary* movie = self.movies[index.row];
+    NSDictionary* movie = self.movies[index.item];
     DetailsViewController* viewController = [segue destinationViewController];
     viewController.movie = movie;
 }
-
 
 - (nonnull __kindof UICollectionViewCell *)collectionView:(nonnull UICollectionView *)collectionView cellForItemAtIndexPath:(nonnull NSIndexPath *)indexPath {
     MovieItem* item = [collectionView dequeueReusableCellWithReuseIdentifier:@"MovieItem" forIndexPath:indexPath];

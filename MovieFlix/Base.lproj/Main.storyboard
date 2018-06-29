@@ -143,9 +143,13 @@
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <color key="backgroundColor" red="0.18823529410000001" green="0.16078431369999999" blue="0.1843137255" alpha="1" colorSpace="custom" customColorSpace="displayP3"/>
                                     </view>
-                                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" alpha="0.75" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ehP-KT-fRZ">
+                                    <imageView clipsSubviews="YES" alpha="0.75" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="ehP-KT-fRZ">
                                         <rect key="frame" x="133" y="26" width="109" height="149"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <gestureRecognizers/>
+                                        <connections>
+                                            <outletCollection property="gestureRecognizers" destination="dkn-gp-CrI" appends="YES" id="tCh-re-GRz"/>
+                                        </connections>
                                     </imageView>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" text=" Description" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KlB-U4-Mpk">
                                         <rect key="frame" x="14" y="258" width="347" height="22"/>
@@ -171,8 +175,43 @@
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="2Ey-m5-JYV" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="dkn-gp-CrI">
+                    <connections>
+                        <action selector="onTap:" destination="rSX-cK-RNs" id="gBE-eV-HXl"/>
+                        <segue destination="xzI-Se-ufN" kind="show" id="n89-2Y-XDN"/>
+                    </connections>
+                </tapGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="1352.8" y="732.68365817091455"/>
+        </scene>
+        <!--Trailer View Controller-->
+        <scene sceneID="2ZX-Nd-lib">
+            <objects>
+                <viewController id="xzI-Se-ufN" customClass="TrailerViewController" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="edI-e7-7eH">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <wkWebView contentMode="scaleToFill" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="aFm-yw-xz2">
+                                <rect key="frame" x="0.0" y="64" width="375" height="554"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="0.15294117647058825" green="0.15294117647058825" blue="0.15294117647058825" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <wkWebViewConfiguration key="configuration">
+                                    <audiovisualMediaTypes key="mediaTypesRequiringUserActionForPlayback" none="YES"/>
+                                    <wkPreferences key="preferences"/>
+                                </wkWebViewConfiguration>
+                            </wkWebView>
+                        </subviews>
+                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <viewLayoutGuide key="safeArea" id="oie-eR-tV3"/>
+                    </view>
+                    <connections>
+                        <outlet property="webView" destination="aFm-yw-xz2" id="3Ei-k9-8pv"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Msy-hA-DY0" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1352.8" y="1437.9310344827588"/>
         </scene>
         <!--TableView-->
         <scene sceneID="9y0-a6-GD1">

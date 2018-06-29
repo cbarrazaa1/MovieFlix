@@ -8,6 +8,7 @@
 
 #import "DetailsViewController.h"
 #import "UIImageView+AFNetworking.h"
+#import "TrailerViewController.h"
 
 @interface DetailsViewController ()
 @property (weak, nonatomic) IBOutlet UIImageView *backdropView;
@@ -16,6 +17,9 @@
 @property (weak, nonatomic) IBOutlet UILabel *dateLabel;
 @property (weak, nonatomic) IBOutlet UILabel *descLabel;
 @property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
+
+// class properties
+@property (strong, nonatomic) NSArray* trailerResults;
 
 @end
 
@@ -81,6 +85,29 @@
     
     CGFloat maxHeight = self.descLabel.frame.origin.y + self.descLabel.frame.size.height + 30.0;
     self.scrollView.contentSize = CGSizeMake(self.descLabel.frame.size.width, maxHeight);
+    
+    // load trailer
+    NSNumber* movieID = self.movie[@"id"];
+    NSString* strID = [movieID stringValue];
+    
+    NSString* baseURL = @"https://api.themoviedb.org/3/movie/";
+    NSString* urlWithID = [baseURL stringByAppendingString:strID];
+    NSString* fullURL = [urlWithID stringByAppendingString:@"/videos?api_key=a07e22bc18f5cb106bfe4cc1f83ad8ed&language=en-US"];
+    NSURL *url = [NSURL URLWithString:fullURL];
+    
+    NSURLRequest *request = [NSURLRequest requestWithURL:url cachePolicy:NSURLRequestReloadIgnoringLocalCacheData timeoutInterval:10.0];
+    NSURLSession *session = [NSURLSession sessionWithConfiguration:[NSURLSessionConfiguration defaultSessionConfiguration] delegate:nil delegateQueue:[NSOperationQueue mainQueue]];
+    NSURLSessionDataTask *task = [session dataTaskWithRequest:request completionHandler:^(NSData *data, NSURLResponse *response, NSError *error) {
+        if (error != nil) {
+            NSLog(@"%@", [error localizedDescription]);
+        }
+        else {
+            NSDictionary *dataDictionary = [NSJSONSerialization JSONObjectWithData:data options:NSJSONReadingMutableContainers error:nil];
+            
+            self.trailerResults = dataDictionary[@"results"];
+        }
+    }];
+    [task resume];
 }
 
 - (void)didReceiveMemoryWarning {
@@ -94,7 +121,17 @@
 - (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
     // Get the new view controller using [segue destinationViewController].
     // Pass the selected object to the new view controller.
+    NSDictionary* trailer = self.trailerResults[0];
+    NSString* videoKey = trailer[@"key"];
+    NSString* baseYoutubeURL = @"https://www.youtube.com/watch?v=";
+    NSString* youtubeURL = [baseYoutubeURL stringByAppendingString:videoKey];
     
+    TrailerViewController* viewController = [segue destinationViewController];
+    viewController.currentURL = youtubeURL;
+}
+
+- (IBAction)onTap:(id)sender {
+    NSLog(@"Tap");
 }
 
 @end

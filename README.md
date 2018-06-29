@@ -2,7 +2,7 @@
 
 **Movie Flix** is a movies app using the [The Movie Database API](http://docs.themoviedb.apiary.io/#).
 
-Time spent: **9** hours spent in total
+Time spent: **10** hours spent in total
 
 ## User Stories
 
@@ -22,8 +22,8 @@ The following **optional** features are implemented:
 - [X] User can view the large movie poster by tapping on a cell.
 - [X] For the large poster, load the low resolution image first and then switch to the high resolution image when complete.
 - [X] Customize the selection effect of the cell.
-- [ ] Customize the navigation bar.
-- [ ] Customize the UI.
+- [X] Customize the navigation bar.
+- [X] Customize the UI.
 
 The following **additional** features are implemented:
 
@@ -38,13 +38,14 @@ Please list two areas of the assignment you'd like to **discuss further with you
 
 Here's a walkthrough of implemented user stories:
 
-<img src='http://i.imgur.com/link/to/your/gif/file.gif' title='Video Walkthrough' width='' alt='Video Walkthrough' />
+<img src='https://i.imgur.com/dO2qi57.gif' title='Video Walkthrough' width='' alt='Video Walkthrough' />
 
 GIF created with [LiceCap](http://www.cockos.com/licecap/).
 
 ## Notes
 
-Describe any challenges encountered while building the app.
+* At first, learning to use TableView and CollectionView is pretty hard. After this project, the process doesn't seem that complex anymore.
+* I struggled a lot with small things like fading images and loading low-res -> high-res.
 
 ## Credits
 

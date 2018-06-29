@@ -75,9 +75,9 @@
     self.descLabel.text = self.movie[@"overview"];
     self.dateLabel.text = self.movie[@"release_date"];
     
-    [self.titleLabel sizeToFit];
+    //[self.titleLabel sizeToFit];
     [self.descLabel sizeToFit];
-    [self.dateLabel sizeToFit];
+   // [self.dateLabel sizeToFit];
     
     CGFloat maxHeight = self.descLabel.frame.origin.y + self.descLabel.frame.size.height + 30.0;
     self.scrollView.contentSize = CGSizeMake(self.descLabel.frame.size.width, maxHeight);

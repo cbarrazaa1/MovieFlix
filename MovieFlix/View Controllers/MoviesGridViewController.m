@@ -126,8 +126,7 @@
         NSURL* actualURL = [NSURL URLWithString:fullURL];
         NSURLRequest* urlRequest = [NSURLRequest requestWithURL:actualURL];
         
-        item.movieImage.image = nil;
-        [item.movieImage setImageWithURLRequest:urlRequest placeholderImage:nil
+        [item.movieImage setImageWithURLRequest:urlRequest placeholderImage:item.movieImage.image
             success:^(NSURLRequest * _Nonnull request, NSHTTPURLResponse * _Nullable response, UIImage * _Nonnull image) {
               if (response)
               {

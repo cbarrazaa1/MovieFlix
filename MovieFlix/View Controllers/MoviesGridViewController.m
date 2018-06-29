@@ -124,9 +124,28 @@
         NSString* posterURL = movie[@"poster_path"];
         NSString* fullURL = [baseURL stringByAppendingString:posterURL];
         NSURL* actualURL = [NSURL URLWithString:fullURL];
+        NSURLRequest* urlRequest = [NSURLRequest requestWithURL:actualURL];
         
         item.movieImage.image = nil;
-        [item.movieImage setImageWithURL:actualURL];
+        [item.movieImage setImageWithURLRequest:urlRequest placeholderImage:nil
+            success:^(NSURLRequest * _Nonnull request, NSHTTPURLResponse * _Nullable response, UIImage * _Nonnull image) {
+              if (response)
+              {
+                item.movieImage.alpha = 0;
+                item.movieImage.image = image;
+                
+                [UIView animateWithDuration:0.8 animations:^{
+                    item.movieImage.alpha = 1.0;
+                }];
+              }
+              else
+              {
+                  item.movieImage.image = image;
+              }
+        }
+        failure:^(NSURLRequest * _Nonnull request, NSHTTPURLResponse * _Nullable response, NSError * _Nonnull error) {
+            
+        }];
     }
     
     return item;

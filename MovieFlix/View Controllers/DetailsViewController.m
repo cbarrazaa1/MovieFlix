@@ -23,17 +23,47 @@
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    // set up backdrop
-    NSString* baseURL = @"https://image.tmdb.org/t/p/w500";
-    NSString* backdropURL = self.movie[@"backdrop_path"];
-    NSString* fullBackdropURL = [baseURL stringByAppendingString:backdropURL];
-    NSURL* actualBackdropURL = [NSURL URLWithString:fullBackdropURL];
     
-    [self.backdropView setImageWithURL:actualBackdropURL];
+    NSString* smallBaseURL = @"https://image.tmdb.org/t/p/w200";
+    NSString* largeBaseURL = @"https://image.tmdb.org/t/p/w500";
+    
+    // set up backdrop
+    NSString* backdropURL = self.movie[@"backdrop_path"];
+    NSString* smallBackdropURL = [smallBaseURL stringByAppendingString:backdropURL];
+    NSString* largeBackdropURL = [largeBaseURL stringByAppendingString:backdropURL];
+    NSURL* actualSmallBackdropURL = [NSURL URLWithString:smallBackdropURL];
+    NSURL* actualLargeBackdropURL = [NSURL URLWithString:largeBackdropURL];
+    NSURLRequest* smallRequest = [NSURLRequest requestWithURL:actualSmallBackdropURL];
+    NSURLRequest* largeRequest = [NSURLRequest requestWithURL:actualLargeBackdropURL];
+    
+    [self.backdropView setImageWithURLRequest:smallRequest placeholderImage:nil success:^(NSURLRequest * _Nonnull request, NSHTTPURLResponse * _Nullable response, UIImage * _Nonnull smallImage)
+     {
+         self.backdropView.alpha = 0;
+         self.backdropView.image = smallImage;
+         
+         [UIView animateWithDuration:0.3 animations:^{
+             self.backdropView.alpha = 1;
+         } completion:^(BOOL finished) {
+             [self.backdropView setImageWithURLRequest:largeRequest
+                                      placeholderImage:smallImage
+              success:^(NSURLRequest * _Nonnull request, NSHTTPURLResponse * _Nullable response, UIImage * _Nonnull largeImage)
+              {
+                  self.backdropView.image = largeImage;
+              }
+              failure:^(NSURLRequest * _Nonnull request, NSHTTPURLResponse * _Nullable response, NSError * _Nonnull error)
+              {
+                  [self.backdropView setImageWithURL:actualLargeBackdropURL];
+              }];
+         }];
+     }
+    failure:^(NSURLRequest * _Nonnull request, NSHTTPURLResponse * _Nullable response, NSError * _Nonnull error)
+     {
+         [self.backdropView setImageWithURL:actualLargeBackdropURL];
+     }];
     
     // set up poster
     NSString* posterURL = self.movie[@"poster_path"];
-    NSString* fullPosterURL = [baseURL stringByAppendingString:posterURL];
+    NSString* fullPosterURL = [largeBaseURL stringByAppendingString:posterURL];
     NSURL* actualPosterURL = [NSURL URLWithString:fullPosterURL];
     
     [self.posterView setImageWithURL:actualPosterURL];

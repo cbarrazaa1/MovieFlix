@@ -193,4 +193,17 @@
     [self.refreshControl endRefreshing];
     [self.collectionView setContentOffset:CGPointMake(0, -self.refreshControl.bounds.size.height) animated:YES];
 }
+
+- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath {
+    
+    UICollectionViewCell* cell = [collectionView cellForItemAtIndexPath:indexPath];
+    
+    [UIView animateWithDuration:0.12 animations:^{
+        cell.transform = CGAffineTransformMakeScale(1.02, 1.02);
+    } completion:^(BOOL finished) {
+        [UIView animateWithDuration:0.12 animations:^{
+            cell.transform = CGAffineTransformIdentity;
+        }];
+    }];
+}
 @end

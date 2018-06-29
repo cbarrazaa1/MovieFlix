@@ -236,7 +236,7 @@
                                         </view>
                                         <connections>
                                             <outlet property="movieImage" destination="6K3-Qf-t7z" id="xqz-QZ-cCD"/>
-                                            <segue destination="rSX-cK-RNs" kind="show" id="TMe-iS-mpN"/>
+                                            <segue destination="rSX-cK-RNs" kind="show" id="yam-jZ-73Q"/>
                                         </connections>
                                     </collectionViewCell>
                                 </cells>

@@ -17,6 +17,8 @@
 @property (weak, nonatomic) IBOutlet UILabel *dateLabel;
 @property (weak, nonatomic) IBOutlet UILabel *descLabel;
 @property (weak, nonatomic) IBOutlet UIScrollView *scrollView;
+@property (weak, nonatomic) IBOutlet UILabel *ratingLabel;
+@property (weak, nonatomic) IBOutlet UIProgressView *ratingBar;
 
 // class properties
 @property (strong, nonatomic) NSArray* trailerResults;
@@ -108,6 +110,31 @@
         }
     }];
     [task resume];
+    
+    // load ratings
+    NSString* rating = self.movie[@"vote_average"];
+    double dRating = [rating doubleValue];
+    
+    self.ratingLabel.text = [NSString stringWithFormat:@"%.1f/10.0", dRating];
+    self.ratingBar.progress = dRating / 10.0f;
+    
+    UIColor* color = nil;
+    
+    if(dRating < 4)
+    {
+        color = [UIColor redColor];
+    }
+    else if(dRating > 4 && dRating < 7.5)
+    {
+        color = [UIColor yellowColor];
+    }
+    else if(dRating > 7.5)
+    {
+        color = [UIColor greenColor];
+    }
+    
+    self.ratingLabel.textColor = color;
+    self.ratingBar.tintColor = color;
 }
 
 - (void)didReceiveMemoryWarning {

@@ -116,7 +116,6 @@
     double dRating = [rating doubleValue];
     
     self.ratingLabel.text = [NSString stringWithFormat:@"%.1f/10.0", dRating];
-    self.ratingBar.progress = dRating / 10.0f;
     
     UIColor* color = nil;
     
@@ -135,6 +134,9 @@
     
     self.ratingLabel.textColor = color;
     self.ratingBar.tintColor = color;
+    
+    self.ratingBar.progress = 0;
+    [self.ratingBar setProgress:(dRating / 10.0f) animated:YES];
 }
 
 - (void)didReceiveMemoryWarning {

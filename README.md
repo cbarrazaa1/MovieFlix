@@ -41,7 +41,7 @@ Please list two areas of the assignment you'd like to **discuss further with you
 
 Here's a walkthrough of implemented user stories:
 
-<img src='https://imgur.com/feTwbEH' title='Part 1' width='' alt='Part 1' />
+![alt text](https://github.com/cbarrazaa1/MovieFlix/flix.gif "Logo Title Text 1")
 
 GIF created with [LiceCap](http://www.cockos.com/licecap/).
 

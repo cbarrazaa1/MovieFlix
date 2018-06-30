@@ -111,7 +111,7 @@
     // Pass the selected object to the new view controller.
     UICollectionViewCell* cell = sender;
     NSIndexPath* index = [self.collectionView indexPathForCell:cell];
-    NSDictionary* movie = self.movies[index.item];
+    NSDictionary* movie = self.filteredMovies[index.item];
     DetailsViewController* viewController = [segue destinationViewController];
     viewController.movie = movie;
 }

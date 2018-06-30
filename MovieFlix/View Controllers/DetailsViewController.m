@@ -124,11 +124,11 @@
     {
         color = [UIColor redColor];
     }
-    else if(dRating > 4 && dRating < 7.5)
+    else if(dRating >= 4 && dRating < 7.5)
     {
         color = [UIColor yellowColor];
     }
-    else if(dRating > 7.5)
+    else if(dRating >= 7.5)
     {
         color = [UIColor greenColor];
     }

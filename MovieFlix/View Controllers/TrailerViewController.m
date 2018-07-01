@@ -21,9 +21,11 @@
 }
 
 - (void)viewDidAppear:(BOOL)animated {
+    // set up url request for trailer
     NSURL* url = [NSURL URLWithString:self.currentURL];
     NSURLRequest* request = [NSURLRequest requestWithURL:url cachePolicy:NSURLRequestReloadIgnoringLocalCacheData timeoutInterval:10.0];
     
+    // load the url into the webview
     [self.webView loadRequest:request];
 }
 
@@ -31,15 +33,5 @@
     [super didReceiveMemoryWarning];
     // Dispose of any resources that can be recreated.
 }
-
-/*
-#pragma mark - Navigation
-
-// In a storyboard-based application, you will often want to do a little preparation before navigation
-- (void)prepareForSegue:(UIStoryboardSegue *)segue sender:(id)sender {
-    // Get the new view controller using [segue destinationViewController].
-    // Pass the selected object to the new view controller.
-}
-*/
 
 @end
